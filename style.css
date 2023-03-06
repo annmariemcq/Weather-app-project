@@ -53,18 +53,14 @@ p {
   margin: 0 0 10px;
   padding: 0;
 }
-.weather-emoji {
-  font-size: 70px;
-  text-align: left;
-  padding: 0px;
-}
+
 #temperature {
   font-size: 70px;
   padding: 0px;
 }
 .unit {
   position: relative;
-  top: -30px;
+  top: -40px;
 }
 
 .weather-details {

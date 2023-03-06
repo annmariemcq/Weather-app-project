@@ -64,8 +64,35 @@ let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", changeCelsius);
 fahrenheit.addEventListener("click", changeFahrenheit);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTLM = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTLM =
+      forecastHTLM +
+      `<div class="col-2">
+                <div class="forecast-day" id="forecastDay">${day}</div>
+                
+                <img src="https://clipground.com/images/weather-symbols-clipart-sunny-8.png" 
+                alt="clear" 
+                id="forecastIcon"
+                width="40px">
+                <div class="forecast-temps">
+                  <span class="forecase-max" id="maxTemp">10º</span>
+                  <span class="forecast-min" id="minTemp">5º</span>
+                </div>
+
+              </div>`;
+  });
+  forecastHTLM = forecastHTLM + `</div>`;
+  forecastElement.innerHTML = forecastHTLM;
+}
+
 let city = document.querySelector("#search-form");
 city.addEventListener("click", search);
+
+displayForecast();
 
 defaultCity("New York");
 

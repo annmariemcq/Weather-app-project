@@ -1,4 +1,5 @@
 function getCityDetails(response) {
+  celsiusTemp = response.data.main.temp;
   document.querySelector("#city-searched").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
@@ -39,6 +40,30 @@ function search(event) {
   let cityInput = document.querySelector("#city").value;
   defaultCity(cityInput);
 }
+
+function changeCelsius(event) {
+  event.preventDefault;
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
+  let temp = document.querySelector("#temperature");
+  temp.innerHTML = Math.round(celsiusTemp);
+}
+function changeFahrenheit(event) {
+  event.preventDefault;
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let temp = document.querySelector("#temperature");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temp.innerHTML = Math.round(fahrenheitTemp);
+}
+
+let celsiusTemp = null;
+
+let celsius = document.querySelector("#celsius");
+let fahrenheit = document.querySelector("#fahrenheit");
+celsius.addEventListener("click", changeCelsius);
+fahrenheit.addEventListener("click", changeFahrenheit);
+
 let city = document.querySelector("#search-form");
 city.addEventListener("click", search);
 

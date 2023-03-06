@@ -16,6 +16,7 @@ function getCityDetails(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+  getForecast(response.data.coord);
 }
 function getLocation(position) {
   navigator.geolocation.getCurrentPosition(getLocation);
@@ -64,23 +65,30 @@ let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", changeCelsius);
 fahrenheit.addEventListener("click", changeFahrenheit);
 
-function displayForecast() {
+function getForecast(coordinates) {
+  let apiKey = "b1a8336ff1e05b64da5625e4158fbea3";
+  let unit = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTLM = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
+  let forecast = response.data.daily;
+  forcase.forEach(function (forecastDay) {
     forecastHTLM =
       forecastHTLM +
       `<div class="col-2">
-                <div class="forecast-day" id="forecastDay">${day}</div>
+                <div class="forecast-day" id="forecastDay">${forecastDay.dt}</div>
                 
-                <img src="https://clipground.com/images/weather-symbols-clipart-sunny-8.png" 
+                <img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png"; 
                 alt="clear" 
                 id="forecastIcon"
                 width="40px">
                 <div class="forecast-temps">
-                  <span class="forecase-max" id="maxTemp">10º</span>
-                  <span class="forecast-min" id="minTemp">5º</span>
+                  <span class="forecase-max" id="maxTemp">${forecastDay.temp.max}º</span>
+                  <span class="forecast-min" id="minTemp">${forecastDay.temp.min}º</span>
                 </div>
 
               </div>`;
@@ -91,8 +99,6 @@ function displayForecast() {
 
 let city = document.querySelector("#search-form");
 city.addEventListener("click", search);
-
-displayForecast();
 
 defaultCity("New York");
 

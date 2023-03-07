@@ -81,9 +81,7 @@ function displayForecast(response) {
       forecastHTLM =
         forecastHTLM +
         `<div class="col-2">
-                <div class="forecast-day" id="forecastDay">${formatDay(
-                  forecastDay.dt
-                )}</div>
+                <div class="forecast-day" >${formatDay(forecastDay.dt)}</div>
                 
                 <img src="http://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
@@ -92,10 +90,10 @@ function displayForecast(response) {
                 id="forecastIcon"
                 width="40px">
                 <div class="forecast-temps">
-                  <span class="forecase-max" id="maxTemp">${Math.round(
+                  <span class="forecase-max">${Math.round(
                     forecastDay.temp.max
                   )}º</span>
-                  <span class="forecast-min" id="minTemp">${Math.round(
+                  <span class="forecast-min" >${Math.round(
                     forecastDay.temp.min
                   )}º</span>
                 </div>

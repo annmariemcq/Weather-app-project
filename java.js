@@ -130,4 +130,6 @@ let days = [
 ];
 
 let day = document.querySelector("#todays-date");
-day.innerHTML = `${days[now.getDay()]} ${now.getHours()}:${now.getMinutes()}`;
+day.innerHTML = `Last updated: ${
+  days[now.getDay()]
+} ${now.getHours()}:${now.getMinutes()}`;
